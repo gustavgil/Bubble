@@ -1,0 +1,357 @@
+/*
+Creado por Gustavo Gil.
+Licencia Creative Commons (CC) 3.0 Venezuela.
+Si está utilizando este archivo...
+
+    Usted es libre para:
+
+Compartir — copiar y redistribuir el material en cualquier medio o formato
+Adaptar — remezclar, transformar y crear a partir del material para cualquier propósito, incluso comercialmente
+El licenciante no puede revocar estas libertades en tanto usted siga los términos de la licencia
+Bajo los siguientes términos:
+
+Atribución — Usted debe darle crédito a esta obra de manera adecuada, proporcionando un enlace a la licencia, e indicando si se han realizado cambios. Puede hacerlo en cualquier forma razonable, pero no de forma tal que sugiera que usted o su uso tienen el apoyo del licenciante.
+Compartir Igual — Si usted mezcla, transforma o crea nuevo material a partir de esta obra, usted podrá distribuir su contribución siempre que utilice lamisma licencia que la obra original.
+No hay restricciones adicionales — Usted no puede aplicar términos legales ni medidas tecnológicas que restrinjan legalmente a otros hacer cualquier uso permitido por la licencia.
+
+Aviso:
+Usted no tiene que cumplir con la licencia para los materiales en el dominio público o cuando su uso esté permitido por una excepción o limitación aplicable.
+No se entregan garantías. La licencia podría no entregarle todos los permisos que necesita para el uso que tenga previsto. Por ejemplo, otros derechos como relativos a publicidad, privacidad, o derechos morales pueden limitar la forma en que utilice el material.
+*/
+/* 
+	Ver. 1.0.
+    Creado el : 12/10/2016.
+    Autor     : Gustavo Gil.
+    Email     : gustavgil@gmail.com
+*/
+/* IMPORTS */
+@import url("font-awesome.min.css");
+/* FIN DE IMPORTS */
+
+/* RESET DE LOS ELEMENTOS */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+html{
+	-ms-text-size-adjust:100%;
+	-webkit-text-size-adjust:100%;
+}
+
+body {
+	-webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    font-family: Arial, Helvetica, sans-serif;
+    height:100%;
+    width:100%;
+    overflow: hidden;
+    font-size: 1.2em;
+    background-color: #333;
+    color: #fff;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, canvas{
+	display: block;
+}
+
+ul { 
+	list-style: none 
+}
+
+b{
+	font-weight: bold;
+}
+img{
+	max-width: 96%;
+    height: auto;
+}
+
+p{
+	text-indent: 1em;
+	text-align: justify;
+	margin-bottom: 1.5em;
+	padding: 10px;
+}
+
+p::first-letter{
+	font-weight: bold;
+}
+
+h1{
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 2px;
+	padding-top: 6px;
+}
+
+h2{
+	font-weight: bold;
+	padding-top: 6px;
+	margin-left: 8px;
+}
+/* FIN DE RESET DE LOS ELEMENTOS */
+
+.cuadroCerrar, .cuadroTam, .cuadroMinMax{
+	width: 26px;
+	height: 24px;
+	text-align: center;
+	padding-top: 4px;
+	margin-right: 3px;
+	margin-top: 2px;
+	color: #fff;
+	border-radius: 4px;
+	background-color: rgba(0,0,0,0.30);
+	font-size: 12pt;
+	cursor: default;
+}
+
+.cuadroCerrar{
+	background-color: #bb0000;
+}
+
+.cuadroTam:hover, .cuadroMinMax:hover{
+	background-color: #33cc00;
+	text-shadow: 1px 1px 3px #000;
+}
+
+.cuadroCerrar:hover{
+	background-color: #ff0000;
+	text-shadow: 1px 1px 3px #000;
+}
+
+.barSupDialogos{
+	background-color: rgba(0,0,0,0.60);
+	color: #fff;
+	font-size: 10pt;
+	border-radius: 6px 6px 0 0;
+}
+
+.dialogoTit{
+	display: inline-block;
+	margin-top: 6px;
+	margin-left: 8px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.dialogConten{
+	overflow-y: auto;
+	padding-left: 6px;
+	background-color: #ddd;
+	color: #000;
+}
+
+.dialogo{
+	-webkit-box-shadow: 4px 4px 8px rgba(0,0,0,0.30);
+	box-shadow: 4px 4px 8px rgba(0,0,0,0.30);
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	-webkit-transition: width 80ms ease-in-out, height 80ms ease-in-out;
+    transition: width 80ms ease-in-out, height 80ms ease-in-out;
+}
+
+/* LAYOUT */
+div.contenedor{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    background-color: #0099ff;
+}
+
+header.headerP{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 40px;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+div.marcoIconoMenu, div.marcoLogo, div.marcoTitulo{
+    position: relative;
+    float: left;
+}
+
+div.marcoIconoMenu{
+    width: 30px;
+    cursor: pointer;
+}
+
+div.contenido{
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+div.contenido > nav, div.contenido > section, div.contenido > aside{
+    -webkit-transition: all 400ms ease-in-out;
+    transition: all 400ms ease-in-out;
+}
+
+nav.menuLat{
+    -webkit-flex: 0 1 auto;
+    flex: 0 1 auto;
+    background-color: #333;
+    width: 40px;
+}
+
+nav.menuLat:hover{
+    width: 200px;
+}
+
+section.seccionP{
+    -webkit-flex: 1 6 auto;
+    flex: 1 6 auto;
+    background-color: #fff;
+    padding: 20px;
+    min-width:auto;
+    overflow: auto;
+}
+
+aside.asideP{
+    -webkit-flex: 0 1 auto;
+    flex: 0 1 auto;
+    background-color: #999;
+    width: 200px;
+}
+
+/* cajas */
+.box1{
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 0;
+    position: relative;
+    border-radius: 4px;
+}
+
+.box1 > header{
+    min-height: 40px;
+    background-color: rgba(255,255,255,0.30);
+    position: relative;
+    top:0;
+    left:0;
+    width: 100%;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    margin-top: 0;
+    margin-bottom: 6px;
+    padding: 6px;
+    text-align: center;
+}
+
+.box1 > header > i{
+    float: left;
+    margin-top: 3px;
+    margin-left: 6px;
+    font-size: 1.3em;
+}
+
+.box1 > footer{
+    min-height: 40px;
+    background-color: rgba(0,0,0,0.30);
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 6px;
+}
+
+.box1 > h1, .box > p, .box > span{
+    margin: 6px;
+}
+
+/* disposiciones */
+
+.centrado{
+    margin: 0 auto;
+    margin-bottom: 2px;
+}
+
+.derecha{
+    margin:4px;
+    float: right;
+}
+
+.izquierda{
+    margin:4px;
+    float: left;
+}
+
+.imagenConten, .textoCentrado{
+    text-align: center;
+}
+
+/* separaciones */
+
+.superior {
+    margin-top: 10px;
+}
+
+/* formas */
+
+.bordeRedondo{
+    border-radius: 8px;
+}
+
+/* colores */
+.celeste{
+    background-color: #5bccf6;
+    color: #333;
+    border: 1px solid #3dc4f5;
+}
+.azul2{
+    background-color: #0099ff;
+    color: #fff;
+    border: 1px solid #3dc4f5;
+}
+.lima{
+    background-color: #9cd159;
+    color: #333;
+    border: 1px solid #8eca3f;
+}
+.naranja{
+	background-color: #ff9900;
+    color: #000;
+    border: 1px solid #a46200;
+}
+.rojoClaro{
+    background-color: #ff5757;
+    color: #fff;
+    border: 1px solid #ff3333;
+}
+.gris{
+    background-color: #444;
+    color: #fff;
+    border: 1px solid #333;
+}
+.letraOscura{
+    color: #333;
+}
+.letraClara{
+    color: #fff;
+}
+/* FIN DE LAYOUT */
